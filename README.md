@@ -1,20 +1,51 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Lyma Digital — Premium Web Development Agency
 
-# Run and deploy your AI Studio app
+A premium web development agency portfolio built with React, TypeScript, and Tailwind CSS. Featuring smooth scroll animations, project modals, responsive design, and an integrated contact form.
 
-This contains everything you need to run your app locally.
+Built by **Lyma Adam Bagri**.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1ZTU9KmkuPV8TrylJxE092Hhq3xOfmcn9
+## Tech Stack
+
+- **Frontend:** React 19, TypeScript, Tailwind CSS
+- **Build Tool:** Vite 6
+- **Routing:** React Router DOM v7
+- **Animations:** CSS keyframes + IntersectionObserver
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+2. Run the app:
+   ```bash
+   npm run dev
+   ```
+3. Open [http://localhost:3000](http://localhost:3000)
+
+## Project Structure
+
+```
+├── components/       # Reusable UI components
+│   ├── Header.tsx    # Fixed navbar with mobile menu
+│   ├── Footer.tsx    # Social links, contact info, credits
+│   ├── Hero.tsx      # Animated hero section
+│   ├── Logo.tsx      # SVG monogram logo
+│   └── ...
+├── pages/            # Route pages
+│   ├── Home.tsx
+│   ├── ProjectsPage.tsx
+│   ├── AboutPage.tsx
+│   ├── ContactPage.tsx
+│   └── ...
+├── public/           # Static assets (project screenshots)
+├── constants.tsx     # Project data, testimonials, pricing
+├── types.ts          # TypeScript interfaces
+└── App.tsx           # Router and layout
+```
+
+## License
+
+MIT

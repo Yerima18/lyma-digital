@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git rm:*)",
+      "Bash(git commit:*)",
+      "Bash(gh repo create:*)",
+      "Bash(brew list:*)",
+      "Bash(git remote add:*)",
+      "Bash(git reset:*)",
+      "Bash(git update-ref:*)",
+      "Bash(git push:*)",
+      "Bash(git rebase -r --root --exec 'git commit --amend --no-edit -m \"\"$\\(git log --format=%B -n1 | sed \"\"/Co-Authored-By/d\"\"\\)\"\"')",
+      "Bash(git stash:*)"
+    ]
+  }
+}
