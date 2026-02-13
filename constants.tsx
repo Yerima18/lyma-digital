@@ -69,6 +69,16 @@ export const PROJECTS: Project[] = [
     description: 'A personal finance dashboard for tracking income, expenses, and balances. Features dark mode, CSV export, category breakdowns, and transaction history.',
     tech: ['React', 'TypeScript', 'Tailwind CSS', 'Firebase'],
     year: '2026'
+  },
+  {
+    id: '5',
+    title: 'SanteBenin',
+    category: 'Web Application',
+    image: '/projects/sante-benin.png',
+    link: 'https://sante-benin.vercel.app/',
+    description: 'A public health information platform for Benin featuring a disease catalog, AI symptom checker, vaccination calendar, prevention guides, and emergency contacts. Built as an educational tool for health awareness.',
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'AI Integration'],
+    year: '2026'
   }
 ];
 
