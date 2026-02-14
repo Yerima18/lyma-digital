@@ -12,7 +12,11 @@
       "Bash(git update-ref:*)",
       "Bash(git push:*)",
       "Bash(git rebase -r --root --exec 'git commit --amend --no-edit -m \"\"$\\(git log --format=%B -n1 | sed \"\"/Co-Authored-By/d\"\"\\)\"\"')",
-      "Bash(git stash:*)"
+      "Bash(git stash:*)",
+      "Bash(npm install:*)",
+      "Bash(vercel whoami:*)",
+      "Bash(vercel login:*)",
+      "Bash(vercel:*)"
     ]
   }
 }
