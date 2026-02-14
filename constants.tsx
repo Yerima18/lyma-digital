@@ -102,7 +102,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: '3',
     name: 'OumoulHairy',
-    role: 'Operations Manager',
+    role: 'Founder',
     company: 'Univers Muslim',
     content: 'The WhatsApp integration was a game-changer for our ordering process. Orders increased significantly and the user experience is seamless. Highly recommended.',
     avatar: 'https://i.pravatar.cc/150?u=yusuf'
