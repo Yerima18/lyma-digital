@@ -33,7 +33,7 @@ const ContactPage: React.FC = () => {
             <div className="space-y-12 mt-16">
               <div>
                 <h4 className="text-xs uppercase tracking-widest font-bold text-aura-accent mb-4">Project Inquiries</h4>
-                <p className="text-2xl font-serif">adamabagrilafia@gmail.com</p>
+                <p className="text-2xl font-serif">adambagrilafia@gmail.com</p>
               </div>
 
               <div>
