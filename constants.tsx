@@ -93,15 +93,15 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: '2',
-    name: 'Faadil Torou',
-    role: 'Founder',
+    name: 'Nabil Dossou',
+    role: 'Creative Director',
     company: 'BlackBow',
     content: 'Their attention to detail and minimalist aesthetic perfectly aligned with our brand values. The most professional agency we have ever worked with.',
-    avatar: 'https://i.pravatar.cc/150?u=faadil'
+    avatar: 'https://i.pravatar.cc/150?u=nabil'
   },
   {
     id: '3',
-    name: 'Yusuf Kemal',
+    name: 'OumoulHairy',
     role: 'Operations Manager',
     company: 'Univers Muslim',
     content: 'The WhatsApp integration was a game-changer for our ordering process. Orders increased significantly and the user experience is seamless. Highly recommended.',
