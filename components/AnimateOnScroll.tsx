@@ -12,6 +12,16 @@ const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({ children, className =
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    // If the element is already in the viewport on mount, show it immediately
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setTimeout(() => setVisible(true), delay);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -19,10 +29,10 @@ const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({ children, className =
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0, rootMargin: '0px 0px 50px 0px' }
     );
 
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(el);
     return () => observer.disconnect();
   }, [delay]);
 
