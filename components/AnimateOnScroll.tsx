@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 interface AnimateOnScrollProps {
   children: React.ReactNode;
@@ -9,43 +9,31 @@ interface AnimateOnScrollProps {
 
 const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [ready, setReady] = useState(false);
   const [visible, setVisible] = useState(false);
+  const aboveFold = useRef(false);
 
-  // Phase 1: After first paint, enable transitions
-  useEffect(() => {
+  // Before the browser paints: if the element is already in the viewport,
+  // mark it visible immediately so the user never sees a blank page
+  useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
-
-    // Force the browser to compute the initial hidden styles
-    // Reading a layout property triggers a synchronous reflow
-    void el.offsetHeight;
-
-    // Enable transitions after the browser has painted the hidden state
-    requestAnimationFrame(() => {
-      setReady(true);
-    });
-  }, []);
-
-  // Phase 2: Once transitions are enabled, check visibility and observe
-  useEffect(() => {
-    if (!ready) return;
-    const el = ref.current;
-    if (!el) return;
-
-    const show = () => setTimeout(() => setVisible(true), delay);
-
-    // Check if already in viewport
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
-      show();
-      return;
+      aboveFold.current = true;
+      setVisible(true);
     }
+  }, []);
+
+  // For elements below the fold: animate them in when they scroll into view
+  useEffect(() => {
+    if (aboveFold.current) return;
+    const el = ref.current;
+    if (!el) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          show();
+          setTimeout(() => setVisible(true), delay);
           observer.unobserve(entry.target);
         }
       },
@@ -54,19 +42,21 @@ const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({ children, className =
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [ready, delay]);
+  }, [delay]);
 
   return (
     <div
       ref={ref}
       className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'none' : 'translateY(20px)',
-        transition: ready
-          ? 'opacity 0.8s ease-out, transform 0.8s ease-out'
-          : 'none',
-      }}
+      style={
+        aboveFold.current
+          ? undefined
+          : {
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'none' : 'translateY(20px)',
+              transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+            }
+      }
     >
       {children}
     </div>
