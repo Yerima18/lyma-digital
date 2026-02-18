@@ -15,10 +15,20 @@ const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({ children, className =
     const el = ref.current;
     if (!el) return;
 
-    // If the element is already in the viewport on mount, show it immediately
+    const triggerVisible = () => {
+      // Double rAF ensures the browser has painted the hidden state first,
+      // so the CSS transition actually animates instead of popping
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setTimeout(() => setVisible(true), delay);
+        });
+      });
+    };
+
+    // If the element is already in the viewport on mount, trigger with rAF
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
-      setTimeout(() => setVisible(true), delay);
+      triggerVisible();
       return;
     }
 
