@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="text-aura-accent hover:text-aura-beige transition-colors"
             >
-              LYMA ADAM BAGRI
+              LAFIA ADAM BAGRI
             </a>
           </p>
           <div className="flex space-x-8 mt-4 md:mt-0">

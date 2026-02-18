@@ -12,7 +12,7 @@ const AboutPage: React.FC = () => {
               <span className="text-aura-accent font-bold uppercase tracking-[0.2em] text-xs block mb-4">Our Essence</span>
               <h1 className="text-5xl md:text-7xl font-serif font-bold mb-8 italic">Bespoke.</h1>
               <p className="text-xl text-aura-black/70 leading-relaxed mb-6">
-                Lyma Digital was founded by Lyma Adam Bagri on the principle that digital experiences should be as unique and refined as the brands they represent. I believe in quality over quantity, precision over speed, and strategy over guesswork.
+                Lyma Digital was founded by Lafia Adam Bagri on the principle that digital experiences should be as unique and refined as the brands they represent. I believe in quality over quantity, precision over speed, and strategy over guesswork.
               </p>
               <p className="text-aura-black/60 leading-relaxed">
                 Based in Istanbul, I handle every project end-to-end — from strategy and design to development and deployment. This hands-on approach means every detail gets the attention it deserves, with no compromises along the way.
