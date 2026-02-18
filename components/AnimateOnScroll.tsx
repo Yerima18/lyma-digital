@@ -1,5 +1,5 @@
 
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface AnimateOnScrollProps {
   children: React.ReactNode;
@@ -10,26 +10,24 @@ interface AnimateOnScrollProps {
 const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({ children, className = '', delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const aboveFold = useRef(false);
 
-  // Before the browser paints: if the element is already in the viewport,
-  // mark it visible immediately so the user never sees a blank page
-  useLayoutEffect(() => {
+  useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Force browser to compute the hidden state
+    void el.offsetHeight;
+
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
-      aboveFold.current = true;
-      setVisible(true);
+      // Above the fold: animate in after one frame so transition plays
+      requestAnimationFrame(() => {
+        setTimeout(() => setVisible(true), delay);
+      });
+      return;
     }
-  }, []);
 
-  // For elements below the fold: animate them in when they scroll into view
-  useEffect(() => {
-    if (aboveFold.current) return;
-    const el = ref.current;
-    if (!el) return;
-
+    // Below the fold: animate when scrolled into view
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -48,15 +46,11 @@ const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({ children, className =
     <div
       ref={ref}
       className={className}
-      style={
-        aboveFold.current
-          ? undefined
-          : {
-              opacity: visible ? 1 : 0,
-              transform: visible ? 'none' : 'translateY(20px)',
-              transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-            }
-      }
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'none' : 'translateY(20px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+      }}
     >
       {children}
     </div>
